@@ -1,6 +1,7 @@
 package com.ProjetoSegundoBimestre.Petshop.model;
 
 
+import com.ProjetoSegundoBimestre.Petshop.dto.DadosAtualizarProduto;
 import com.ProjetoSegundoBimestre.Petshop.dto.DadosCadastroProduto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -39,4 +40,17 @@ public class Produto {
         this.quantidade = dados.quantidade();
         this.marca = dados.marca();
     }
+
+
+    public void atualizarProduto(DadosAtualizarProduto novosDados) {
+        this.foto = novosDados.foto();
+        this.nomeProduto = novosDados.nomeProduto();
+        this.descricaoProduto = novosDados.descricaoProduto() ;
+        this.preco = novosDados.preco();
+        this.vendedor = novosDados.vendedor();
+        this.categoria = novosDados.categoria();
+        this.quantidade = novosDados.quantidade();
+        this.marca = novosDados.marca();
+    }
+
 }
