@@ -26,10 +26,11 @@ if (form) {
                 ["Petiscos", "Petiscos"]
             ]
         },
+        //Tive que trocar a a URL da imagem higiene
         higiene: {
             titulo: "Cadastro de higiene",
             placeholder: "Shampoo para pelos sensiveis",
-            foto: "img/higiene-pets.png",
+            foto: "https://images.unsplash.com/photo-1647002380358-fc70ed2f04e0?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             categorias: [
                 ["Limpeza", "Limpeza"]
             ]
@@ -164,8 +165,15 @@ if (form) {
         botaoCadastrar.disabled = true;
         botaoCadastrar.textContent = "Cadastrando...";
 
+        /*Problemas em conecatar com o Spring, então eu troquei
+         try {
+            const resposta = await fetch("/produto"
+        por:
         try {
-            const resposta = await fetch("/produto", {
+            const resposta = await fetch("http://localhost:8080/produto"
+        */
+        try {
+            const resposta = await fetch("http://localhost:8080/produto", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

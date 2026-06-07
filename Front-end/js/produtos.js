@@ -5,11 +5,14 @@ const filtros = document.querySelectorAll(".filter");
 const totalProdutos = document.getElementById("totalProdutos");
 const totalEstoque = document.getElementById("totalEstoque");
 const totalCategorias = document.getElementById("totalCategorias");
-
+/* Testando erro com protocolo Live Server (estava usando file, quando deveria ser 'http') ->>
 const endpointProdutos = window.location.protocol === "file:"
     ? "http://localhost:8080/produto"
     : "/produto";
-
+*/ 
+// Forma com localhosto e http ->>
+const endpointProdutos = "http://localhost:8080/produto";
+// deu certo, era esse o problema :)
 const imagensCategoria = {
     "Ração": "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&w=900&q=80",
     "Petiscos": "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&w=900&q=80",
@@ -142,8 +145,14 @@ function renderizarProdutos() {
 }
 
 async function carregarProdutos() {
+    
     try {
+    /* Testanto erros
         const resposta = await fetch(endpointProdutos);
+    */
+        console.log(endpointProdutos);
+        const resposta = await fetch(endpointProdutos)
+        console.log(resposta.status)
 
         if (!resposta.ok) {
             throw new Error("Nao foi possivel carregar os produtos.");
