@@ -79,6 +79,7 @@ function atualizarResumo(lista) {
     statusProdutos.textContent = `${lista.length} produto(s) encontrados.`;
 }
 
+//Coloquei o botão de excluir no final dessa função no card
 function criarCard(produto) {
     const card = document.createElement("article");
     card.className = "product-card";
@@ -97,6 +98,14 @@ function criarCard(produto) {
             <div class="product-footer">
                 <strong class="price">${formatarPreco(produto.preco)}</strong>
                 <span class="stock ${classeEstoque(quantidade)}">${textoEstoque(quantidade)}</span>
+            </div>
+            <div>
+                <br><button class="btn btn-danger btn-sm" onclick="excluirProduto(${produto.id})">
+
+                    <i class="bi bi-trash"></i>
+
+                </button>
+
             </div>
         </div>
     `;
@@ -165,6 +174,34 @@ async function carregarProdutos() {
         statusProdutos.className = "status error";
         listaProdutos.innerHTML = "";
     }
+}
+
+//Recarrega a página atualizada automaticamente
+function recarregarForcado() {
+    location.reload(true);
+}
+
+//Função de excluir o produto
+function excluirProduto(id) {
+    
+    fetch(`http://localhost:8080/produto/${id}` , {
+        
+        method: "DELETE"
+    })
+
+     .then(response => {
+
+        if (response.ok){
+            Swal.fire({
+                title : "ROUPA EXCLUÍDA COM SUCESSO",
+                text :  "ROUPA CADASTRADA",
+                icon : "success" 
+            })
+        }   
+     
+    })
+
+recarregarForcado()
 }
 
 buscaProduto.addEventListener("input", renderizarProdutos);
