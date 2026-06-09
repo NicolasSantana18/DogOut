@@ -14,8 +14,3 @@ categoria varchar(30),
 quantidade INT,
 marca varchar(30)
 );
-
-SELECT *
-FROM produto;
-
-DROP DATABASE petshop;
